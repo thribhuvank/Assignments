@@ -1,0 +1,33 @@
+Pattern1 {
+   line1 "Services"
+   line2 "0001"
+   line3 {Include -e "BFE"}
+   line4 {Include "1*1"}
+   line5 0
+   line6 {Include "2*2"}
+   line7 {Include "3*3"}
+   line8 "-d" "-c" "services:stop" "services:pause" "services:delete" "services:startup"
+}
+
+Pattern2 {
+	line1 "Registry"
+	line2 "0002"
+	line3 0
+	line4 { Include -e		"\\REGISTRY\\MACHINE\\*\\ItemData" 	}
+	line5 { Include "*006f006e00*" }
+	line6 { Include "*" }
+	line7 { Include "*" }
+	line8 "-c" "-d" "registry:modify" "registry:create"
+}
+
+Pattern3 {
+	line1 Files
+	line2 0003
+	line3 0
+	line4 { Include "$Home\\" }
+	line5 { Exclude $n "NT AUTHORITY" "NT System" "AUTHORITY\\ SERVICE"}
+	line6 {Include "*"}
+	line7 {Include "*"}
+	line8 files:read files:create files:write files:delete
+}
+
